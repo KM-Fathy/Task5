@@ -228,24 +228,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-//SizedBox(
-//                         height: 50,
-//                         width: 200,
-//                         child: ElevatedButton(
-//                           style: ElevatedButton.styleFrom(
-//                             backgroundColor: const Color(0xff422b2b),
-//                             alignment: Alignment.center,
-//                           ),
-//                           onPressed: () async {
-//                             Navigator.push(context,
-//                                 MaterialPageRoute(builder: (context) {
-//                              return Register();
-//                             }));
-//                           },
-//                           child: const Text(
-//                             'Create Account',
-//                             style: TextStyle(fontSize: 20),
-//                           ),
-//                         ),
-//                       ),
