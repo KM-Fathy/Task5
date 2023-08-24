@@ -27,34 +27,33 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[initialIndex],
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
-        padding: const EdgeInsets.all(6.0),
-        child: ClipRRect(
+      bottomSheet: Container(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          child: BottomNavigationBar(
-            selectedItemColor: Colors.white,
-            unselectedItemColor: const Color(0xff8391a1),
-            backgroundColor: const Color(0xff300046),
-            onTap: (index) {
-              pageSwitch(index);
-            },
-            currentIndex: initialIndex,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home,
-                  ),
-                  label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person,
-                  ),
-                  label: 'Profile')
-            ],
-          ),
+          color: const Color(0xff300046),
+        ),
+        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        child: BottomNavigationBar(
+          selectedItemColor: Colors.white,
+          unselectedItemColor: const Color(0xff8391a1),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          onTap: (index) {
+            pageSwitch(index);
+          },
+          currentIndex: initialIndex,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: 'Profile')
+          ],
         ),
       ),
     );

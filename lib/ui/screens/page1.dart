@@ -23,8 +23,8 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: const Color(0xff300046),
+        foregroundColor: Colors.white,
         title: const Text('Welcome to EGYDYNAMIC'),
         leading: IconButton(
           onPressed: () async {

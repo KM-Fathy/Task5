@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task_5/cubit/custom_cubit.dart';
 import 'package:task_5/cubit/custom_state.dart';
 import 'package:task_5/main_layout.dart';
@@ -19,36 +20,33 @@ class Register extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xffffffff),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                height: 50,
-                width: 50,
-                child: ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return LoginPage();
-                      }));
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
-                    )),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: SvgPicture.asset(
+                      'Icons/back.svg'
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 25,
               ),
               const Text(
-                'Welcome back! Glad to see you, Again!',
-                style: TextStyle(color: Color(0xff1e232c), fontSize: 32),
+                'Welcome back! Glad\nto see you, Again!',
+                style: TextStyle(
+                    color: Color(0xff1e232c),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700),
               ),
               const SizedBox(
                 height: 50,
@@ -211,66 +209,44 @@ class Register extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
-              const Center(
-                child: Text(
-                  'Or Login with',
-                  style: TextStyle(color: Color(0xff858a93)),
-                ),
+              const Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Color(0xffe8ecf4),
+                      thickness: 1.5,
+                      endIndent: 12,
+                    ),
+                  ),
+                  Text(
+                    'Or Login with',
+                    style: TextStyle(color: Color(0xff858a93), fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Color(0xffe8ecf4),
+                      thickness: 1.5,
+                      indent: 12,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
-                height: 15,
+                height: 25,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SizedBox(
-                    height: 70,
-                    width: 103.33,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white),
-                          onPressed: () {},
-                          child: const Icon(
-                            Icons.facebook,
-                            color: Color(0xff4595ff),
-                            size: 32,
-                          )),
-                    ),
+                  SvgPicture.asset(
+                    'Icons/facebook.svg',
                   ),
-                  SizedBox(
-                    height: 70,
-                    width: 103.33,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white),
-                          onPressed: () {},
-                          child: const Icon(
-                            Icons.chrome_reader_mode,
-                            color: Color(0xfffbbb00),
-                            size: 32,
-                          )),
-                    ),
+                  SvgPicture.asset(
+                    'Icons/google.svg',
                   ),
-                  SizedBox(
-                    height: 70,
-                    width: 103.33,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white),
-                          onPressed: () {},
-                          child: const Icon(
-                            Icons.apple,
-                            color: Colors.black,
-                            size: 32,
-                          )),
-                    ),
+                  SvgPicture.asset(
+                    'Icons/apple.svg',
                   )
                 ],
               ),

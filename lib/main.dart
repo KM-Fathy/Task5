@@ -36,6 +36,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.transparent
+        )
+      ),
       home: user == null ? LoginPage() : const MainPage(),
     );
   }

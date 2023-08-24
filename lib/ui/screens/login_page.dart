@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:task_5/cubit/custom_cubit.dart';
 import 'package:task_5/cubit/custom_state.dart';
 import 'package:task_5/main_layout.dart';
@@ -18,16 +20,20 @@ class LoginPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xffffffff),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Spacer(),
               const Text(
-                'Welcome back! Glad to see you, Again!',
-                style: TextStyle(color: Color(0xff1e232c), fontSize: 32),
+                'Welcome back! Glad\nto see you, Again!',
+                style: TextStyle(
+                    color: Color(0xff1e232c),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700),
               ),
               const SizedBox(
                 height: 50,
@@ -90,137 +96,112 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 75,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 50,
-                        width: 310,
-                        child: BlocConsumer<CustomCubit, CustomState>(
-                          listener: (context, state) {
-                            if (state is LoginErrorState) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    state.error,
-                                  ),
-                                ),
-                              );
-                            } else if (state is LoginFinishedState) {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const MainPage();
-                              }));
-                            }
-                          },
-                          builder: (context, state) {
-                            return ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xff300046),
-                                  alignment: Alignment.center,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              onPressed: () async {
-                                if (formKey.currentState!.validate()) {
-                                  context.read<CustomCubit>().login(
-                                        email.text,
-                                        password.text,
-                                      );
-                                }
-                              },
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            );
-                          },
+              SizedBox(
+                height: 50,
+                width: 310,
+                child: BlocConsumer<CustomCubit, CustomState>(
+                  listener: (context, state) {
+                    if (state is LoginErrorState) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            state.error,
+                          ),
                         ),
+                      );
+                    } else if (state is LoginFinishedState) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const MainPage();
+                      }));
+                    }
+                  },
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xff300046),
+                          alignment: Alignment.center,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          context.read<CustomCubit>().login(
+                                email.text,
+                                password.text,
+                              );
+                        }
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(fontSize: 20),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        'Or Login with',
-                        style: TextStyle(color: Color(0xff858a93)),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 70,
-                            width: 103.33,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white),
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.facebook,
-                                    color: Color(0xff4595ff),
-                                    size: 32,
-                                  )),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,
-                            width: 103.33,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white),
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.chrome_reader_mode,
-                                    color: Color(0xfffbbb00),
-                                    size: 32,
-                                  )),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,
-                            width: 103.33,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white),
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.apple,
-                                    color: Colors.black,
-                                    size: 32,
-                                  )),
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text("Don't have an account?"),
-                          TextButton(
-                            onPressed: () async {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return Register();
-                              }));
-                            },
-                            child: const Text(
-                              'Register',
-                              style: TextStyle(color: Color(0xfff1473a)),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Color(0xffe8ecf4),
+                      thickness: 1.5,
+                      endIndent: 12,
+                    ),
+                  ),
+                  Text(
+                    'Or Login with',
+                    style: TextStyle(color: Color(0xff858a93), fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Color(0xffe8ecf4),
+                      thickness: 1.5,
+                      indent: 12,
+                    ),
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SvgPicture.asset(
+                    'Icons/facebook.svg',
+                  ),
+                  SvgPicture.asset(
+                    'Icons/google.svg',
+                  ),
+                  SvgPicture.asset(
+                    'Icons/apple.svg',
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center ,
+                children: [
+                  const Text("Don't have an account?"),
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Register();
+                      }));
+                    },
+                    child: const Text(
+                      'Register Now',
+                      style: TextStyle(color: Color(0xfff1473a)),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),

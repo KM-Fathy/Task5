@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task_5/cubit/custom_cubit.dart';
 import 'package:task_5/cubit/custom_state.dart';
 
@@ -9,12 +10,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xfff8f4fc),
-        foregroundColor: Colors.black,
-        title: const Center(child: Text('Profile')),
-      ),
-      backgroundColor: const Color(0xfff8f4fc),
+      backgroundColor: Colors.white,
       body: BlocBuilder<CustomCubit, CustomState>(builder: (context, state) {
         if (context.read<CustomCubit>().user != null) {
           return Row(
@@ -45,8 +41,6 @@ class ProfilePage extends StatelessWidget {
                         bottom: 5,
                         right: 5,
                         child: Container(
-                          height: 40,
-                          width: 40,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -56,10 +50,10 @@ class ProfilePage extends StatelessWidget {
                               onPressed: () {
                                 context.read<CustomCubit>().pickImage();
                               },
-                              icon: const Icon(
-                                Icons.add_a_photo_outlined,
-                                color: Colors.black,
-                              )),
+                              icon: SvgPicture.asset(
+                                'Icons/image_editor.svg'
+                              )
+                          ),
                         ),
                       )
                     ],
